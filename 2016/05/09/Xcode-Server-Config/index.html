@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="zhengxu" />
+  <meta name="keywords" content="Xcode,iOS,CI,Server," />
 
 
 
@@ -80,15 +80,33 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="未完待旭">
-<meta property="og:url" content="http://zhengxu.tk/archives/2014/11/index.html">
+<meta name="description" content="Xcode Server 配置方法图解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Xcode Server 搭建持续集成服务器">
+<meta property="og:url" content="http://zhengxu.tk/2016/05/09/Xcode-Server-Config/index.html">
 <meta property="og:site_name" content="未完待旭">
-<meta property="og:description">
+<meta property="og:description" content="Xcode Server 配置方法图解">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/02.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/03.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/04.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/05.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/06.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/07.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/08.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/09.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/10.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/11.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/12.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/13.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/14.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/15.png">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/16.png">
+<meta property="og:updated_time" content="2016-05-10T01:06:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="未完待旭">
-<meta name="twitter:description">
+<meta name="twitter:title" content="基于 Xcode Server 搭建持续集成服务器">
+<meta name="twitter:description" content="Xcode Server 配置方法图解">
+<meta name="twitter:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png">
 
 
 
@@ -106,7 +124,7 @@
   };
 </script>
 
-  <title> 归档 | 未完待旭 </title>
+  <title> 基于 Xcode Server 搭建持续集成服务器 | 未完待旭 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right  page-archive  ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,103 +253,151 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 3 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2014">2014</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2014/11/24/iOS-GCD-dispatch-queue-post/" itemprop="url">
-              
-                <span itemprop="name">GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2014-11-24T20:16:41+08:00"
-              content="2014-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2014/11/24/iOS-GCD-intro-post/" itemprop="url">
-              
-                <span itemprop="name">GCD实现iOS多线程开发（一）GCD简介</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2014-11-24T20:16:41+08:00"
-              content="2014-11-24" >
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                基于 Xcode Server 搭建持续集成服务器
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T17:45:46+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基于-Xcode-Server-搭建持续集成服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">基于 Xcode Server 搭建持续集成服务器</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/Xcode-Server-Config/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/Xcode-Server-Config/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Xcode Server 配置方法图解<br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png" alt="选取Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/02.png" alt="设置Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/03.png" alt="启动XcodeServer"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/04.png" alt="设置Xcode存储库"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/05.png" alt="设置访问权限"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/06.png" alt="登录团队账号"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/07.png" alt="Xcode添加Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/08.png" alt="Xcode配置Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/09.png" alt="Xcode登录Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/10.png" alt="菜单创建Bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/11.png" alt="命名Bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/12.png" alt="登录代码托管"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/13.png" alt="选择分支"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/14.png" alt="配置bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/15.png" alt="设置编译时机类型"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/16.png" alt="设置时间间隔编译"></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/CI/" rel="tag">#CI</a>
+          
+            <a href="/tags/Server/" rel="tag">#Server</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/24/iOS-GCD-dispatch-queue-post/" rel="next" title="GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue">
+                <i class="fa fa-chevron-left"></i> GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -339,6 +405,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/09/Xcode-Server-Config/"
+           data-title="基于 Xcode Server 搭建持续集成服务器" data-url="http://zhengxu.tk/2016/05/09/Xcode-Server-Config/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -358,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://7xqant.com1.z0.glb.clouddn.com/blog/jpg/avatar.jpg"
@@ -456,6 +539,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -546,11 +640,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
