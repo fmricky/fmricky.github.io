@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,Xcode,CI,Server," />
+  <meta name="keywords" content="iOS,React Native," />
 
 
 
@@ -80,33 +80,19 @@
 
 
 
-<meta name="description" content="Xcode Server 配置方法图解随着敏捷管理的逐步渗透，开发迭代的速度得到了明显的提升，随之而来的是频繁的分包测试和内测。编译一个安装包，在Xcode上是一件极其痛苦的事情，尤其是在大部分成员的机器还配置着机械硬盘的iMac。一个Archive过程，足以喝一杯咖啡。">
+<meta name="description" content="React Native 是基于React的理念用于开发Native App的开源工具。官方对它的描述是A framework for building native APPs using React.这说明React Native采用的是React的语法。同时React的界面构建利用了JSX技术，后续我会详细利用一篇来描述这部分内容。同样提供一下React Native的开源项目地址http:/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于 Xcode Server 搭建持续集成服务器">
-<meta property="og:url" content="http://zhengxu.tk/2016/05/09/Xcode-Server-Config/index.html">
+<meta property="og:title" content="React Native Step by Step（一）初识React Native">
+<meta property="og:url" content="http://zhengxu.tk/2016/06/12/React-Native-Step-by-Step-Getting-Started/index.html">
 <meta property="og:site_name" content="未完待旭">
-<meta property="og:description" content="Xcode Server 配置方法图解随着敏捷管理的逐步渗透，开发迭代的速度得到了明显的提升，随之而来的是频繁的分包测试和内测。编译一个安装包，在Xcode上是一件极其痛苦的事情，尤其是在大部分成员的机器还配置着机械硬盘的iMac。一个Archive过程，足以喝一杯咖啡。">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/02.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/03.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/04.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/05.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/06.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/07.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/08.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/09.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/10.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/11.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/12.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/13.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/14.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/15.png">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/16.png">
-<meta property="og:updated_time" content="2016-05-10T01:16:14.000Z">
+<meta property="og:description" content="React Native 是基于React的理念用于开发Native App的开源工具。官方对它的描述是A framework for building native APPs using React.这说明React Native采用的是React的语法。同时React的界面构建利用了JSX技术，后续我会详细利用一篇来描述这部分内容。同样提供一下React Native的开源项目地址http:/">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/react-native/001.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/react-native/002.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:updated_time" content="2016-06-12T03:23:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于 Xcode Server 搭建持续集成服务器">
-<meta name="twitter:description" content="Xcode Server 配置方法图解随着敏捷管理的逐步渗透，开发迭代的速度得到了明显的提升，随之而来的是频繁的分包测试和内测。编译一个安装包，在Xcode上是一件极其痛苦的事情，尤其是在大部分成员的机器还配置着机械硬盘的iMac。一个Archive过程，足以喝一杯咖啡。">
-<meta name="twitter:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png">
+<meta name="twitter:title" content="React Native Step by Step（一）初识React Native">
+<meta name="twitter:description" content="React Native 是基于React的理念用于开发Native App的开源工具。官方对它的描述是A framework for building native APPs using React.这说明React Native采用的是React的语法。同时React的界面构建利用了JSX技术，后续我会详细利用一篇来描述这部分内容。同样提供一下React Native的开源项目地址http:/">
+<meta name="twitter:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/react-native/001.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10">
 
 
 
@@ -124,7 +110,7 @@
   };
 </script>
 
-  <title> 基于 Xcode Server 搭建持续集成服务器 | 未完待旭 </title>
+  <title> React Native Step by Step（一）初识React Native | 未完待旭 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +260,7 @@
             
             
               
-                基于 Xcode Server 搭建持续集成服务器
+                React Native Step by Step（一）初识React Native
               
             
           </h1>
@@ -286,19 +272,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-09T17:45:46+08:00" content="2016-05-09">
-              2016-05-09
+            <time itemprop="dateCreated" datetime="2016-06-12T11:23:07+08:00" content="2016-06-12">
+              2016-06-12
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native-Step-by-Step/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native Step by Step</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/09/Xcode-Server-Config/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/Xcode-Server-Config/" itemprop="commentsCount"></span>
+                <a href="/2016/06/12/React-Native-Step-by-Step-Getting-Started/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/12/React-Native-Step-by-Step-Getting-Started/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +325,33 @@
       
 
       
-        <p>Xcode Server 配置方法图解<br>随着敏捷管理的逐步渗透，开发迭代的速度得到了明显的提升，随之而来的是频繁的分包测试和内测。编译一个安装包，在Xcode上是一件极其痛苦的事情，尤其是在大部分成员的机器还配置着机械硬盘的iMac。一个Archive过程，足以喝一杯咖啡。<br><a id="more"></a><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/01.png" alt="选取Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/02.png" alt="设置Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/03.png" alt="启动XcodeServer"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/04.png" alt="设置Xcode存储库"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/05.png" alt="设置访问权限"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/06.png" alt="登录团队账号"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/07.png" alt="Xcode添加Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/08.png" alt="Xcode配置Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/09.png" alt="Xcode登录Server"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/10.png" alt="菜单创建Bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/11.png" alt="命名Bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/12.png" alt="登录代码托管"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/13.png" alt="选择分支"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/14.png" alt="配置bot"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/15.png" alt="设置编译时机类型"><br><img src="http://o6pi0e9ng.bkt.clouddn.com/post/xcode-server/16.png" alt="设置时间间隔编译"></p>
+        <p>因为公司项目需要，开始研究 Hybrid 技术，进而发现了 Facebook 的 React Native。严格来说，这并不算是传统意义的 Hybrid 技术。它不在WebView里执行，而是基于JavascriptCore，直接执行服务端的JS代码。</p>
+<p>引用一位知乎匿名用户的总结</p>
+<blockquote>
+<p> 在React Native中，写JS的工程师解决的是「<em>将基本组件拼装成可用的React组件</em>」的问题，写Native Code的工程师解决的是「<em>提供核心组件，提供足够的扩展性、灵活性和性能</em>」的问题</p>
+</blockquote>
+<p>目前只是初学，还无法评论上述总结是否贴切，一步一步学下去吧。笔记里只涉及React Native for iOS。</p>
+<p><img src="http://o6pi0e9ng.bkt.clouddn.com/post/react-native/001.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10" alt="LOGO"></p>
+<h2 id="React-vs-React-Native"><a href="#React-vs-React-Native" class="headerlink" title="React vs React Native"></a>React vs React Native</h2><p>对我来说，仅有的一丢丢js知识，基本是基于jQuery的操作，看过的js的书也仅有一本《锋利的jQuery》。css也仅存于css2那个阶段用来简单布局的阶段。工作以来几乎完全没有再在接触js开发。突然接手学React Native，好多基础概念都还是懵懂的。就像譬如说React Native，跟React.js有神马关系？</p>
+<p>似乎网上对这个的解释并不多，今天看书时才放到。也许对前端的同学来说，这个可能是常识了。就当给我一样的小白们先科普一下。</p>
+<p>最初先冒出来的是React这东西，它是Facebook开源的一个前端项目，用官方的解释是<code>A javascript library for building user interfaces</code>。它的开源项目地址是<a href="[http://facebook.github.io/react/">http://facebook.github.io/react/</a>.</p>
+<p>React Native 是基于React的理念用于开发Native App的开源工具。官方对它的描述是<code>A framework for building native APPs using React</code>.这说明React Native采用的是React的语法。同时React的界面构建利用了JSX技术，后续我会详细利用一篇来描述这部分内容。同样提供一下React Native的开源项目地址<a href="http://facebook.github.io/react-native/" target="_blank" rel="external">http://facebook.github.io/react-native/</a>.</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h3><p>首先是开发环境，不能缺少的就是 <code>Xcode</code> ，React Native v0.26的官方文档上要求的是 Xcode v7.0 或者更高。建议在<a href="https://itunes.apple.com/cn/app/xcode/id497799835?mt=12" target="_blank" rel="external">AppStore</a>下载。</p>
+<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>React Native 依赖的 Node.js ，我们可以通过Homebrew来安装管理。Homebrew的安装非常简单，在终端键入如下命令即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>安装完成后，就可以使用<code>brew</code>命令安装Node.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
+<p>接下来是用Node.js的 <code>npm</code>命令安装 React Native的命令行工具</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+<p>如果执行过程中出现Error，提示<code>permission denied</code>则表示需要root权限，在上述命令前加上sudo，并且执行。</p>
+<h3 id="Watchman-amp-Flow"><a href="#Watchman-amp-Flow" class="headerlink" title="Watchman &amp; Flow"></a>Watchman &amp; Flow</h3><p>Watchman 为推荐安装的工具，用于监测文件系统修改的工具。Flow 用于 React Native 进行静态代码监测。它们的安装也是通过<code>brew</code>完成。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew install watchman</span><br><span class="line">$ brew install flow</span><br></pre></td></tr></table></figure>
+<h2 id="快速创建测试程序"><a href="#快速创建测试程序" class="headerlink" title="快速创建测试程序"></a>快速创建测试程序</h2><p>老规矩，学新东西的第一件事，就是那它（React Native）创建一个 Hello World项目。接下来就用一个简单的命令创建一个初始工程。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ react-native init HelloWorldProject</span><br></pre></td></tr></table></figure>
+<p>打开自动生成的工程下 <code>/iOS/HelloWorldProject.xcodeproj</code>，在模拟器中运行看看。</p>
+<p>因为React Native运行，需要一个服务端的js文件支持页面的初始化，在工程中默认会自动运行这个服务端，由于部署在本地，地址默认配置为 <code>http://localhost:8081/index.ios.bundle</code> 所以在还没有过多修改的情况下，只能在模拟器中运行，如果在真机运行，我们需要对地址进一步修改。</p>
+<p>此刻，可以随意修改index.ios.js看看，点击iOS模拟器，按下Command+R重新加载js文件。</p>
+<p><img src="http://o6pi0e9ng.bkt.clouddn.com/post/react-native/002.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10" alt="HelloWorldProject运行效果"></p>
 
       
     </div>
@@ -343,11 +374,7 @@
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/Xcode/" rel="tag">#Xcode</a>
-          
-            <a href="/tags/CI/" rel="tag">#CI</a>
-          
-            <a href="/tags/Server/" rel="tag">#Server</a>
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
           
         </div>
       
@@ -356,17 +383,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/11/24/iOS-GCD-dispatch-queue-post/" rel="next" title="GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue">
-                <i class="fa fa-chevron-left"></i> GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue
+              <a href="/2016/05/09/Xcode-Server-Config/" rel="next" title="基于 Xcode Server 搭建持续集成服务器">
+                <i class="fa fa-chevron-left"></i> 基于 Xcode Server 搭建持续集成服务器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/12/React-Native-Step-by-Step-Getting-Started/" rel="prev" title="React Native Step by Step（一）初识React Native">
-                React Native Step by Step（一）初识React Native <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -392,8 +415,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/09/Xcode-Server-Config/"
-           data-title="基于 Xcode Server 搭建持续集成服务器" data-url="http://zhengxu.tk/2016/05/09/Xcode-Server-Config/">
+      <div class="ds-thread" data-thread-key="2016/06/12/React-Native-Step-by-Step-Getting-Started/"
+           data-title="React Native Step by Step（一）初识React Native" data-url="http://zhengxu.tk/2016/06/12/React-Native-Step-by-Step-Getting-Started/">
       </div>
     
   </div>
@@ -530,7 +553,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React-vs-React-Native"><span class="nav-number">1.</span> <span class="nav-text">React vs React Native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">2.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode"><span class="nav-number">2.1.</span> <span class="nav-text">Xcode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">2.2.</span> <span class="nav-text">Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Watchman-amp-Flow"><span class="nav-number">2.3.</span> <span class="nav-text">Watchman & Flow</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速创建测试程序"><span class="nav-number">3.</span> <span class="nav-text">快速创建测试程序</span></a></li></ol></div>
             
           </div>
         </section>
