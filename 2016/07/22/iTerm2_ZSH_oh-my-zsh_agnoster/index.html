@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,GCD实现iOS多线程开发,Objective-C," />
+  <meta name="keywords" content="Mac OS X,Term,MacOS,Shell," />
 
 
 
@@ -80,18 +80,21 @@
 
 
 
-<meta name="description" content="Grand Central Dispatch 简称GCD，是iOS开发中实现异步执行任务得技术之一。">
+<meta name="description" content="磨叽了半个月，写下这篇博文，记录一下最近对Term的改造，技巧多半来自网络，在这里做一下整理。开始写这篇博文是通宵看完WWDC那天，处于懵逼的状态时，把标题改了刚刚更名后的MacOS，其实文章内描述的还是OS X 11.11 EI Capitan。
+系统自带的终端，应该说不上丑，满足日常工作来说已经足够了。不过既然是开发者，对生产力应该有极致的要求，更何况是iOS开发者，对开发工具的颜值，也是有一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GCD实现iOS多线程开发（一）GCD简介">
-<meta property="og:url" content="http://zhengxu.tk/2014/11/24//iOS-GCD-intro-post//index.html">
+<meta property="og:title" content="MacOS下，打造完美高效的终端(Term)">
+<meta property="og:url" content="http://zhengxu.tk/2016/07/22/iTerm2_ZSH_oh-my-zsh_agnoster/index.html">
 <meta property="og:site_name" content="未完待旭">
-<meta property="og:description" content="Grand Central Dispatch 简称GCD，是iOS开发中实现异步执行任务得技术之一。">
-<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/image/GCD.jpg">
-<meta property="og:updated_time" content="2016-05-05T14:04:24.000Z">
+<meta property="og:description" content="磨叽了半个月，写下这篇博文，记录一下最近对Term的改造，技巧多半来自网络，在这里做一下整理。开始写这篇博文是通宵看完WWDC那天，处于懵逼的状态时，把标题改了刚刚更名后的MacOS，其实文章内描述的还是OS X 11.11 EI Capitan。
+系统自带的终端，应该说不上丑，满足日常工作来说已经足够了。不过既然是开发者，对生产力应该有极致的要求，更何况是iOS开发者，对开发工具的颜值，也是有一">
+<meta property="og:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/iterm2/01.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10">
+<meta property="og:updated_time" content="2016-07-22T09:27:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GCD实现iOS多线程开发（一）GCD简介">
-<meta name="twitter:description" content="Grand Central Dispatch 简称GCD，是iOS开发中实现异步执行任务得技术之一。">
-<meta name="twitter:image" content="http://o6pi0e9ng.bkt.clouddn.com/image/GCD.jpg">
+<meta name="twitter:title" content="MacOS下，打造完美高效的终端(Term)">
+<meta name="twitter:description" content="磨叽了半个月，写下这篇博文，记录一下最近对Term的改造，技巧多半来自网络，在这里做一下整理。开始写这篇博文是通宵看完WWDC那天，处于懵逼的状态时，把标题改了刚刚更名后的MacOS，其实文章内描述的还是OS X 11.11 EI Capitan。
+系统自带的终端，应该说不上丑，满足日常工作来说已经足够了。不过既然是开发者，对生产力应该有极致的要求，更何况是iOS开发者，对开发工具的颜值，也是有一">
+<meta name="twitter:image" content="http://o6pi0e9ng.bkt.clouddn.com/post/iterm2/01.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10">
 
 
 
@@ -109,7 +112,7 @@
   };
 </script>
 
-  <title> GCD实现iOS多线程开发（一）GCD简介 | 未完待旭 </title>
+  <title> MacOS下，打造完美高效的终端(Term) | 未完待旭 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +262,7 @@
             
             
               
-                GCD实现iOS多线程开发（一）GCD简介
+                MacOS下，打造完美高效的终端(Term)
               
             
           </h1>
@@ -271,38 +274,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-11-24T20:16:41+08:00" content="2014-11-24">
-              2014-11-24
+            <time itemprop="dateCreated" datetime="2016-07-22T17:27:29+08:00" content="2016-07-22">
+              2016-07-22
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/GCD实现iOS多线程开发/" itemprop="url" rel="index">
-                    <span itemprop="name">GCD实现iOS多线程开发</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2014/11/24/iOS-GCD-intro-post/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/11/24//iOS-GCD-intro-post//" itemprop="commentsCount"></span>
+                <a href="/2016/07/22/iTerm2_ZSH_oh-my-zsh_agnoster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/22/iTerm2_ZSH_oh-my-zsh_agnoster/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -324,15 +308,52 @@
       
 
       
-        <center><img src="http://o6pi0e9ng.bkt.clouddn.com/image/GCD.jpg" alt="GCD"></center>
-
-<p><strong>Grand Central Dispatch</strong> 简称 <strong>GCD</strong> ，是iOS开发中实现异步执行任务得技术之一。开发者在需要实现异步操作时，只需要定义想执行的任务并将其追加到适当的Dispatch Queue中，GCD就能生成必要的现成并执行任务。</p>
-<h3 id="GCD有何优势？"><a href="#GCD有何优势？" class="headerlink" title="GCD有何优势？"></a>GCD有何优势？</h3><p>苹果在iOS 4中引入了GCD技术，在此之前Cocoa框架已经提供有<code>NSObject</code>类的<code>performSelectorInBackground:withObject</code>实例方法和<code>performSelectorOnMainThread</code>实例方法等等简单地多线程编程技术，我们试着使用这种技术写一段主线程与子线程交互的代码看看。</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> *在该方法中执行后台线程</span><br><span class="line"> */</span></span><br><span class="line"> - (<span class="keyword">void</span>)launchThreadBy<span class="built_in">NSObjects_performSelectorInBackground_withObject</span></span><br><span class="line"> &#123;</span><br><span class="line">     [<span class="keyword">self</span> performSelectorInBackground:<span class="keyword">@selector</span>(doWork)</span><br><span class="line">                                            withObject:<span class="literal">nil</span>];</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 后台线程处理方法</span><br><span class="line"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)doWork</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSAutoreleasePool</span> *pool = [[<span class="built_in">NSAutoreleasePoll</span> alloc] init];</span><br><span class="line">    <span class="comment">//<span class="doctag">TODO:</span>处理耗时操作</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//处理结束后，调用主线程通知处理结果</span></span><br><span class="line">    [<span class="keyword">self</span> performSelectorOnMainThread:<span class="keyword">@selector</span>(doneWork)</span><br><span class="line">                withObject:<span class="literal">nil</span></span><br><span class="line">                      waitUntilDone:<span class="literal">NO</span>];</span><br><span class="line">    [pool drain];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * 主线程处理方法</span><br><span class="line"> */</span></span><br><span class="line"> - (<span class="keyword">void</span>)doneWork</span><br><span class="line"> &#123;</span><br><span class="line">     <span class="comment">//主线程处理执行结果</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到<code>performSelector-</code>的这一系列方法的确要比<code>NSThread</code>类进行多线程变成简单许多，但是仍然需要针对子线程和主线程需要执行的代码专门声明一个函数调用，并且在这种调用的过程中，只允许匿名传递一个NSObject对象。</p>
-<p>那利用GCD写以上这些程序，会是怎样呢？</p>
-<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue =</span><br><span class="line">          dispatch_queue_create(<span class="string">"tk.zhengxu.gcd.test"</span></span><br><span class="line">                                  ,DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="comment">//<span class="doctag">TODO:</span>处理耗时操作</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//处理结束后，调用主线程通知处理结果</span></span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">//主线程处理执行结果</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>简单地对比，孰优孰略一目了然，当然GCD在多线程开发中得优势不仅仅在于简化了代码的编写，还可以轻松得控制线程的优先级、并发操作以及线程组（Group）的执行。在后续的系列笔记中，将一一介绍这些特性。</p>
+        <p>磨叽了半个月，写下这篇博文，记录一下最近对Term的改造，技巧多半来自网络，在这里做一下整理。开始写这篇博文是通宵看完WWDC那天，处于懵逼的状态时，把标题改了刚刚更名后的MacOS，其实文章内描述的还是OS X 11.11 EI Capitan。</p>
+<p>系统自带的终端，应该说不上丑，满足日常工作来说已经足够了。不过既然是开发者，对生产力应该有极致的要求，更何况是iOS开发者，对开发工具的颜值，也是有一定要求的！</p>
+<a id="more"></a>
+<p>今天就来介绍一下，基于iTerm，如何打造一款属于自己的终端工具。用Linux的同学也不用担心，文中除了iTerm没有以外，其他工具都是可以在Linux上使用的。至于Windows的同学，Sorry，我救不了你们……</p>
+<h2 id="我们的目标"><a href="#我们的目标" class="headerlink" title="我们的目标"></a>我们的目标</h2><p><img src="http://o6pi0e9ng.bkt.clouddn.com/post/iterm2/01.png?watermark/1/image/aHR0cDovL282cGkwZTluZy5ia3QuY2xvdWRkbi5jb20vaW1hZ2Uvd2F0ZXJjb2xvdXJfbWlkZGxlLnBuZw==/dissolve/65/gravity/SouthEast/dx/10/dy/10" alt="最终效果"></p>
+<p>我们的目标当然不仅仅是没有蛀牙，上面的截图只能展示出ZSH强大的冰山一角。先简单介绍一下ZSH能给我们带来哪些便利吧……</p>
+<ul>
+<li><code>tab</code>键自动补全路径时，不区分大小写（终于不用纠结Linux和Mac系统文件夹的大小写差异了）</li>
+<li>自动补全命令参数，目前我用到的git、adb、npm都有很好的支持，不爱记指令参数的我，爱死这功能了</li>
+<li>灵活的配色配置—颜值担当</li>
+<li>跨session的历史指令记忆—懒人必备</li>
+<li>​单命令历史记忆，输完一个指令后，按方向键，可以检索出这个指令的历史使用记录，这玩意太方便了！</li>
+<li>更强大的tab补全功能，支持方向键直接选择tab候选</li>
+<li>…………还有很多很多我都还没挖掘出的功能，你们自己去深挖吧</li>
+</ul>
+<p>让我们开始把自己的Mac武装起来吧……</p>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><p>首先，可以前往iTerm2的官网下载<a href="http://www.iterm2.com/" target="_blank" rel="external">http://www.iterm2.com/</a>。笔者撰稿时机器上装的是目前最新的iTerm2 v3.0.4（都已经到v3了，还叫iTerm2，感觉一定有故事）。</p>
+<p>iTerm2是一款专为Mac打造的终端工具，公认的Mac下最强大的终端工具，没有之一。这里的话不细聊，要展开说可以说一整个系列。有兴趣的同学可以自己Google一下相关的介绍，或者等我下一个猴年马月再写一篇介绍iTerm2的博文……😄。</p>
+<h2 id="ZSH"><a href="#ZSH" class="headerlink" title="ZSH"></a>ZSH</h2><p>Shell是Linux/Unix的一个外壳，你理解成衣服也行。它负责外界与Unix内核的交互，接收用户或其他应用程序的命令，然后把这些命令转化成内核能理解的语言，传给内核，内核是真正干活的，干完之后再把结果返回用户或应用程序。</p>
+<p>Mac默认使用的Shell是bash。除此之外系统还默认安装了多款Shell可供选择：</p>
+<ul>
+<li>csh</li>
+<li>ksh</li>
+<li>sh</li>
+<li>tcsh</li>
+<li>zsh</li>
+</ul>
+<p>可以查看<code>/etc/shells</code>文件来查看本机已装的Shell。</p>
+<p>接下来，我们就来体验一下传说中的『终极的Shell』—<code>ZSH</code>。</p>
+<p>虽然系统已经自带了ZSH，但是通常版本较旧，无法直接更新，笔者建议用HomeBrew安装最新版的ZSH，来替代系统默认的ZSH。如果对版本没追求的同学可以跳过这步。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ brew install zsh</span><br></pre></td></tr></table></figure>
+<p>没有安装Homebrew，或者提示找不到brew命令的，可以现在iTerm2中执行一下代码，安装Homebrew</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>都安装好以后需要先编辑<code>/etc/shells</code>，把新安装的<code>/usr/local/bin/zsh</code>添加进去，注意编辑时需要加<code>sudo</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sudo vim /etc/shells</span><br></pre></td></tr></table></figure>
+<p>现在就可以把终端默认的Shell从bash切换到ZSH了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 切换默认Shell为brew安装新版的zsh</span><br><span class="line">$ chsh -s /usr/local/bin/zsh</span><br><span class="line"># 如果是，刚刚选择使用系统默认ZSH的同学注意，你们的路径是系统默认路径/bin/zsh</span><br></pre></td></tr></table></figure>
+<p>执行后，输入Mac登录密码，就完成了切换。可以重启iTerm2查看一下效果。</p>
+<h2 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h2><p>ZSH作为强大的shell，来自于它丰富的可配置功能。不过过于灵活的配置，造成ZSH的配置极其复杂，从而出现了ZSH的快速配置工具oh-my-zsh。它的官方网站是<a href="http://ohmyz.sh/" target="_blank" rel="external">http://ohmyz.sh/</a>。推荐使用CURL安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<p>重启iTerm2就可以直接看到效果。</p>
+<p>oh-my-zsh的默认主题是<code>robbyrussell</code>而文章开头处截图的是笔者选用的<code>agnoster</code>主题，oh-my-zsh在安装时就已经提供了几十套主题候选，可以在<code>~/.oh-my-zsh/themes/</code>下查看。修改主题的方法是编辑<code>~/.zshrc</code>，修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ZSH_THEME==&quot;agnoster&quot;</span><br></pre></td></tr></table></figure>
+<p>依旧是重启后生效。如果要对主题样式进行自定义，可以编辑<code>~/.oh-my-zsh/themes/agnoster.zsh-theme</code>文件，达到自己想要的效果。</p>
+<h2 id="agnoster主题的乱码的解决方法"><a href="#agnoster主题的乱码的解决方法" class="headerlink" title="agnoster主题的乱码的解决方法"></a>agnoster主题的乱码的解决方法</h2><p>用笔者推荐的 <code>agnoster</code> 主题，还有一个天坑，在Mac上不支持主题要求的字体，在iTerm2显示的是一串乱码，而不是笔者截图中的箭头。</p>
+<p>解决方案是安装<a href="https://github.com/powerline/fonts" target="_blank" rel="external">Powerline</a>，clone这个项目以后，执行根目录的install.sh，把PL字体安装进系统。然后在iTerm的<code>Preferences-&gt;Profils-&gt;Default-&gt;Text</code>中将 <code>Text</code> 和 <code>Non-ASCII Font</code>都修改为Powerline字体，比如笔者选用的<code>Roboto Mono for Powerline</code> 。</p>
 
       
     </div>
@@ -353,11 +374,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/Mac-OS-X/" rel="tag">#Mac OS X</a>
           
-            <a href="/tags/GCD实现iOS多线程开发/" rel="tag">#GCD实现iOS多线程开发</a>
+            <a href="/tags/Term/" rel="tag">#Term</a>
           
-            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+            <a href="/tags/MacOS/" rel="tag">#MacOS</a>
+          
+            <a href="/tags/Shell/" rel="tag">#Shell</a>
           
         </div>
       
@@ -366,13 +389,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/06/12/React-Native-Step-by-Step-Getting-Started/" rel="next" title="React Native Step by Step（一）初识React Native">
+                <i class="fa fa-chevron-left"></i> React Native Step by Step（一）初识React Native
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/11/24/iOS-GCD-dispatch-queue-post/" rel="prev" title="GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue">
-                GCD实现iOS多线程开发（二）为多线程任务创建一个Dispatch Queue <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -398,8 +421,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2014/11/24//iOS-GCD-intro-post//"
-           data-title="GCD实现iOS多线程开发（一）GCD简介" data-url="http://zhengxu.tk/2014/11/24/iOS-GCD-intro-post/">
+      <div class="ds-thread" data-thread-key="2016/07/22/iTerm2_ZSH_oh-my-zsh_agnoster/"
+           data-title="MacOS下，打造完美高效的终端(Term)" data-url="http://zhengxu.tk/2016/07/22/iTerm2_ZSH_oh-my-zsh_agnoster/">
       </div>
     
   </div>
@@ -536,7 +559,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCD有何优势？"><span class="nav-number">1.</span> <span class="nav-text">GCD有何优势？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我们的目标"><span class="nav-number">1.</span> <span class="nav-text">我们的目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iTerm2"><span class="nav-number">2.</span> <span class="nav-text">iTerm2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZSH"><span class="nav-number">3.</span> <span class="nav-text">ZSH</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#oh-my-zsh"><span class="nav-number">4.</span> <span class="nav-text">oh-my-zsh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#agnoster主题的乱码的解决方法"><span class="nav-number">5.</span> <span class="nav-text">agnoster主题的乱码的解决方法</span></a></li></ol></div>
             
           </div>
         </section>
